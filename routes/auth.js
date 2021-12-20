@@ -9,9 +9,10 @@ Router.post("/login", async () => {
 
 Router.post("/signin", async (req, res) => {
     try{
-        const {user} = req.body
+        const user = req.body
         const encrypt_password = await HashEncryptGenerator(user.password)
-        await CreateUser({password: encrypt_password, ...user})
+        user.password = encrypt_password
+        await CreateUser(user)
         res.status(200).json({message: "Usuário criado!"})
     }catch(error){
         res.status(501).json({message: "Houve um erro! " + error})

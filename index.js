@@ -9,6 +9,10 @@ app.get("/", (req, res) => {
     res.status(200).json({message: "OK"})
 })
 
+// ROUTES
+const authRoute = require("./routes/auth")
+
+app.use(authRoute)
 
 
 const PORT = 8080

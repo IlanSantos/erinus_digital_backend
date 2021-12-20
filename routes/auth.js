@@ -10,6 +10,7 @@ Router.post("/login", async () => {
 Router.post("/signin", async (req, res) => {
     try{
         const user = req.body
+        console.log(req.body)
         const encrypt_password = await HashEncryptGenerator(user.password)
         user.password = encrypt_password
         await CreateUser(user)
